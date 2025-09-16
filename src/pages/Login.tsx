@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Wheat, ArrowLeft, User, Mail, Lock, Phone, MapPin } from "lucide-react";
+import { Wheat, ArrowLeft, User, Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -13,10 +13,7 @@ const Login = () => {
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
-    password: "",
-    phone: "",
-    location: "",
-    farmSize: ""
+    password: ""
   });
 
   const handleLogin = (e: React.FormEvent) => {
@@ -149,47 +146,6 @@ const Login = () => {
                         required
                       />
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="+91 9876543210"
-                        className="pl-10"
-                        value={registerData.phone}
-                        onChange={(e) => setRegisterData({ ...registerData, phone: e.target.value })}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="location">Location</Label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        id="location"
-                        type="text"
-                        placeholder="District, State"
-                        className="pl-10"
-                        value={registerData.location}
-                        onChange={(e) => setRegisterData({ ...registerData, location: e.target.value })}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="farm-size">Farm Size (acres)</Label>
-                    <Input
-                      id="farm-size"
-                      type="number"
-                      placeholder="Enter farm size"
-                      value={registerData.farmSize}
-                      onChange={(e) => setRegisterData({ ...registerData, farmSize: e.target.value })}
-                      required
-                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="reg-password">Password</Label>
