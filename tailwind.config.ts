@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        agriculture: {
+          green: "hsl(var(--agriculture-green))",
+          "light-green": "hsl(var(--agriculture-light-green))",
+          yellow: "hsl(var(--agriculture-yellow))",
+          brown: "hsl(var(--agriculture-brown))",
+          orange: "hsl(var(--agriculture-orange))",
+          earth: "hsl(var(--earth-tone))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
