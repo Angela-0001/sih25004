@@ -1,159 +1,164 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wheat, LogOut, User, TrendingUp, CloudRain } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  Wheat,
+  Sun,
+  Cloud,
+  CloudRain,
+  Droplets,
+  Info,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Camera,
+  IndianRupee,
+  Calendar,
+  Mic,
+} from "lucide-react";
+import LanguageQuickToggle from "@/components/LanguageQuickToggle";
+import VoiceTranslator from "@/components/VoiceTranslator";
+import { toast } from "@/components/ui/sonner";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [showTaskDetails, setShowTaskDetails] = useState(false);
 
-  const handleLogout = () => {
-    navigate('/');
-  };
+  const threeDayWeather = [
+    { label: "Aaj", icon: Sun, max: 31, min: 24 },
+    { label: "Kaal", icon: Cloud, max: 29, min: 23 },
+    { label: "Parsi", icon: CloudRain, max: 27, min: 22 },
+  ];
+
+  const cropHealthPercent = 82; // Green zone
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-50">
+    <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_80%_-20%,_rgba(34,197,94,0.15),_transparent),radial-gradient(900px_500px_at_-10%_10%,_rgba(16,185,129,0.12),_transparent)] from-agriculture-earth to-background bg-gradient-to-br selection:bg-agriculture-green/20 selection:text-foreground">
+      {/* Top Bar */}
+      <header className="border-b border-border/60 bg-card/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Wheat className="h-8 w-8 text-agriculture-green" />
-            <h1 className="text-2xl font-bold text-foreground">Farm Forward Dashboard</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-agriculture-green via-emerald-400 to-agriculture-light-green bg-clip-text text-transparent drop-shadow-sm">
+              Debasis Babu's Farm
+            </h1>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <User className="h-4 w-4" />
-              <span>Welcome, Farmer</span>
+          <div className="flex items-center gap-3">
+            <LanguageQuickToggle />
+            <VoiceTranslator />
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/70 backdrop-blur text-foreground border border-border/60 shadow-sm">
+              <Sun className="h-4 w-4 text-yellow-500" />
+              <span className="text-sm font-medium">28°C</span>
             </div>
-            <Button variant="outline" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Logout
-            </Button>
+            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/')}>Home</Button>
+            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/climate-resilience')}>Climate</Button>
+            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/yield-prediction')}>Yield</Button>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-2">
-            Your Agricultural Command Center
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Access climate insights and yield predictions to optimize your farming operations.
-          </p>
-        </div>
-
-        {/* Dashboard Options */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-agriculture-green/20 hover:border-agriculture-green/40"
-            onClick={() => navigate('/climate-resilience')}
-          >
-            <CardHeader className="space-y-4">
-              <div className="w-16 h-16 bg-agriculture-green/10 rounded-2xl flex items-center justify-center group-hover:bg-agriculture-green/20 transition-colors">
-                <CloudRain className="h-8 w-8 text-agriculture-green" />
+      <main className="container mx-auto px-4 py-6 pb-28">
+        {/* A. Aaj ra Kama (Today's Task) */}
+        <Card className="mb-6 border-agriculture-green/30 bg-card/70 backdrop-blur-md hover:border-agriculture-green/60 transition-all duration-300 hover:shadow-lg hover:shadow-agriculture-green/20">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-agriculture-green/20 to-emerald-300/20 border border-agriculture-green/30 flex items-center justify-center shadow-sm">
+                <Droplets className="h-6 w-6 text-agriculture-green" />
               </div>
               <div>
-                <CardTitle className="text-2xl text-foreground mb-2">
-                  Climate Resilience Dashboard
-                </CardTitle>
-                <CardDescription className="text-base">
-                  Monitor weather patterns, climate risks, and get early warnings for natural disasters. 
-                  Plan your farming activities based on comprehensive climate data.
+                <CardTitle className="text-xl">Aaj ra Kama</CardTitle>
+                <CardDescription className="text-base text-foreground">
+                  Irrigate your paddy crop this evening.
                 </CardDescription>
               </div>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-green rounded-full" />
-                  <span className="text-muted-foreground">7-day weather forecast</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-green rounded-full" />
-                  <span className="text-muted-foreground">Disaster risk alerts</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-green rounded-full" />
-                  <span className="text-muted-foreground">Climate-resistant crop recommendations</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-green rounded-full" />
-                  <span className="text-muted-foreground">Optimal sowing dates</span>
-                </li>
-              </ul>
-              <Button className="w-full mt-6 bg-agriculture-green hover:bg-agriculture-green/90">
-                Access Climate Dashboard
-              </Button>
+            </div>
+            <Button
+              variant="ghost"
+              className="flex items-center gap-1 hover:bg-agriculture-green/10"
+              onClick={() => setShowTaskDetails(v => !v)}
+            >
+              <Info className="h-4 w-4" />
+              Learn More {showTaskDetails ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            </Button>
+          </CardHeader>
+          {showTaskDetails && (
+            <CardContent className="text-sm text-muted-foreground">
+              - Best time: 5 PM – 7 PM to reduce evaporation.
+              <br />- Target: Maintain 2-3 cm standing water in paddy field.
+              <br />- Tip: Check field bunds to prevent water loss.
             </CardContent>
-          </Card>
+          )}
+        </Card>
 
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-agriculture-green/20 hover:border-agriculture-green/40"
-            onClick={() => navigate('/yield-prediction')}
-          >
-            <CardHeader className="space-y-4">
-              <div className="w-16 h-16 bg-agriculture-orange/10 rounded-2xl flex items-center justify-center group-hover:bg-agriculture-orange/20 transition-colors">
-                <TrendingUp className="h-8 w-8 text-agriculture-orange" />
-              </div>
-              <div>
-                <CardTitle className="text-2xl text-foreground mb-2">
-                  Yield Prediction
-                </CardTitle>
-                <CardDescription className="text-base">
-                  Get AI-powered crop yield predictions based on historical data, weather patterns, 
-                  and soil health metrics to optimize your farming strategy.
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-orange rounded-full" />
-                  <span className="text-muted-foreground">AI-powered predictions</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-orange rounded-full" />
-                  <span className="text-muted-foreground">Multi-crop analysis</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-orange rounded-full" />
-                  <span className="text-muted-foreground">Historical trend analysis</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 bg-agriculture-orange rounded-full" />
-                  <span className="text-muted-foreground">Optimization recommendations</span>
-                </li>
-              </ul>
-              <Button className="w-full mt-6 bg-agriculture-orange hover:bg-agriculture-orange/90">
-                View Predictions
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+        {/* B. Paga (Weather) */}
+        <Card className="mb-6 bg-card/70 backdrop-blur-md border-agriculture-green/30 hover:border-agriculture-green/60 transition-all duration-300 hover:shadow-lg hover:shadow-agriculture-green/20">
+          <CardHeader>
+            <CardTitle className="text-lg">Paga (Weather)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-3 gap-3">
+              {threeDayWeather.map((d) => (
+                <div key={d.label} className="group rounded-xl border border-agriculture-green/30 p-4 flex flex-col items-center bg-gradient-to-br from-agriculture-green/10 to-emerald-300/10 backdrop-blur hover:from-agriculture-green/20 hover:to-emerald-300/20 transition-all duration-300">
+                  <span className="text-sm font-medium mb-2">{d.label}</span>
+                  <d.icon className="h-8 w-8 mb-2 text-agriculture-green group-hover:scale-110 transition-transform" />
+                  <div className="text-sm"><span className="font-semibold text-foreground">{d.max}°</span> / {d.min}°</div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Quick Stats */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-agriculture-green mb-2">25°C</div>
-              <p className="text-sm text-muted-foreground">Current Temperature</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-agriculture-orange mb-2">85%</div>
-              <p className="text-sm text-muted-foreground">Soil Moisture</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-agriculture-brown mb-2">12</div>
-              <p className="text-sm text-muted-foreground">Days to Harvest</p>
-            </CardContent>
-          </Card>
-        </div>
+        {/* C. Fasal Swasthya (Crop Health) */}
+        <Card className="mb-6 bg-card/70 backdrop-blur-md border-agriculture-green/30 hover:border-agriculture-green/60 transition-all duration-300 hover:shadow-lg hover:shadow-agriculture-green/20">
+          <CardHeader>
+            <CardTitle className="text-lg">Fasal Swasthya (Crop Health)</CardTitle>
+            <CardDescription>Uttam (ଉତ୍ତମ)</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <Progress value={cropHealthPercent} className="h-4 overflow-hidden" />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span className="text-emerald-600 font-medium">Green: Good</span>
+                <span className="text-yellow-600 font-medium">Yellow: Needs Attention</span>
+                <span className="text-red-600 font-medium">Red: Problem</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </main>
+
+      {/* D. Bottom Tab Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-card/80 backdrop-blur-md border-t border-border/60 z-40">
+        <div className="max-w-3xl mx-auto grid grid-cols-4 text-center">
+          <button className="py-3 flex flex-col items-center gap-1 text-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/dashboard')}>
+            <Home className="h-5 w-5" />
+            <span className="text-xs">Home</span>
+          </button>
+          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Fasal Doctor is coming soon") }>
+            <Camera className="h-5 w-5" />
+            <span className="text-xs">Fasal Doctor</span>
+          </button>
+          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Mandi Bhaba is coming soon") }>
+            <IndianRupee className="h-5 w-5" />
+            <span className="text-xs">Mandi Bhaba</span>
+          </button>
+          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Calendar is coming soon") }>
+            <Calendar className="h-5 w-5" />
+            <span className="text-xs">Calendar</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* E. Voice Assistant (Floating) */}
+      <Button
+        className="fixed bottom-20 right-5 rounded-full h-14 w-14 p-0 shadow-lg bg-gradient-to-br from-agriculture-green to-emerald-500 hover:from-emerald-500 hover:to-agriculture-green transition-all duration-300 ring-2 ring-agriculture-green/40 hover:ring-emerald-400/60"
+        onClick={() => {/* Placeholder for Kalia Bhai */}}
+      >
+        <Mic className="h-6 w-6 text-white drop-shadow" />
+      </Button>
     </div>
   );
 };

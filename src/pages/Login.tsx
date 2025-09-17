@@ -4,15 +4,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Wheat, ArrowLeft, User, Mail, Lock } from "lucide-react";
+import { Wheat, ArrowLeft, User, Phone, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [activeTab, setActiveTab] = useState<"login" | "register">("login");
+  const [loginData, setLoginData] = useState({ phone: "", password: "" });
   const [registerData, setRegisterData] = useState({
     name: "",
-    email: "",
+    phone: "",
     password: ""
   });
 
@@ -25,7 +26,10 @@ const Login = () => {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate registration - in real app would create account
-    navigate('/dashboard');
+    // After registering, do NOT auto-login. Switch to login tab and clear forms.
+    setRegisterData({ name: "", phone: "", password: "" });
+    setLoginData({ phone: "", password: "" });
+    setActiveTab("login");
   };
 
   return (
@@ -48,7 +52,7 @@ const Login = () => {
           <p className="text-muted-foreground">Access your agricultural dashboard</p>
         </div>
 
-        <Tabs defaultValue="login" className="w-full">
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="login">Login</TabsTrigger>
             <TabsTrigger value="register">Register</TabsTrigger>
@@ -65,16 +69,16 @@ const Login = () => {
               <CardContent className="space-y-4">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="phone">Phone number</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="email"
-                        type="email"
-                        placeholder="farmer@example.com"
+                        id="phone"
+                        type="tel"
+                        placeholder="e.g. +91 98765 43210"
                         className="pl-10"
-                        value={loginData.email}
-                        onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                        value={loginData.phone}
+                        onChange={(e) => setLoginData({ ...loginData, phone: e.target.value })}
                         required
                       />
                     </div>
@@ -133,16 +137,16 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="reg-email">Email</Label>
+                    <Label htmlFor="reg-phone">Phone number</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                       <Input
-                        id="reg-email"
-                        type="email"
-                        placeholder="farmer@example.com"
+                        id="reg-phone"
+                        type="tel"
+                        placeholder="e.g. +91 98765 43210"
                         className="pl-10"
-                        value={registerData.email}
-                        onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                        value={registerData.phone}
+                        onChange={(e) => setRegisterData({ ...registerData, phone: e.target.value })}
                         required
                       />
                     </div>

@@ -4,6 +4,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Wheat, ArrowLeft, TrendingUp, BarChart3, Target, Lightbulb, Calendar, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from "recharts";
+import LanguageQuickToggle from "@/components/LanguageQuickToggle";
+import VoiceTranslator from "@/components/VoiceTranslator";
 
 const YieldPrediction = () => {
   const navigate = useNavigate();
@@ -29,22 +32,40 @@ const YieldPrediction = () => {
     { title: "Harvest Timing", description: "Plan harvest for optimal moisture content (20-22%)", priority: "High" },
   ];
 
+  const yieldSeries = [
+    { crop: "Paddy", current: 4.2, predicted: 4.8 },
+    { crop: "Wheat", current: 3.1, predicted: 3.4 },
+    { crop: "Maize", current: 2.8, predicted: 3.2 },
+    { crop: "Pulses", current: 1.2, predicted: 1.4 },
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-agriculture-earth to-background selection:bg-agriculture-green/20 selection:text-foreground">
       {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-50">
+      <header className="border-b border-border bg-card/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <Button variant="ghost" onClick={() => navigate('/dashboard')}>
+          <div className="flex items-center space-x-3 group">
+            <Button variant="ghost" onClick={() => navigate('/dashboard')} className="hover:text-agriculture-green">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
             </Button>
-            <Wheat className="h-8 w-8 text-agriculture-green" />
-            <h1 className="text-2xl font-bold text-foreground">Yield Prediction Dashboard</h1>
+            <div className="relative">
+              <Wheat className="h-8 w-8 text-agriculture-green transition-transform duration-300 group-hover:rotate-6" />
+              <span className="pointer-events-none absolute -inset-1 rounded-full bg-agriculture-green/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-agriculture-green to-agriculture-light-green bg-clip-text text-transparent">Yield Prediction Dashboard</h1>
           </div>
-          <Button variant="outline" onClick={() => navigate('/climate-resilience')}>
-            Climate Dashboard
-          </Button>
+          <div className="flex items-center gap-3">
+            <LanguageQuickToggle />
+            <VoiceTranslator />
+            <Button
+              variant="outline"
+              onClick={() => navigate('/climate-resilience')}
+              className="border-agriculture-green/40 hover:bg-agriculture-green/10 hover:border-agriculture-green/60 focus-visible:ring-2 focus-visible:ring-agriculture-green"
+            >
+              Climate Dashboard
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -84,7 +105,7 @@ const YieldPrediction = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Yield Predictions */}
           <div className="lg:col-span-2">
-            <Card className="mb-8">
+            <Card className="mb-8 hover:shadow-lg transition-all duration-300 border-agriculture-green/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-agriculture-green" />
@@ -97,7 +118,7 @@ const YieldPrediction = () => {
               <CardContent>
                 <div className="grid gap-6">
                   {crops.map((crop, index) => (
-                    <div key={index} className="p-6 bg-agriculture-green/5 border border-agriculture-green/20 rounded-lg">
+                    <div key={index} className="p-6 bg-agriculture-green/5 border border-agriculture-green/20 rounded-lg hover:border-agriculture-green/40 transition-colors">
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-semibold text-foreground">{crop.name}</h3>
                         <Badge variant="secondary" className="bg-agriculture-green/10 text-agriculture-green">
@@ -137,8 +158,34 @@ const YieldPrediction = () => {
               </CardContent>
             </Card>
 
+            {/* Yield Comparison Chart */}
+            <Card className="mb-8 hover:shadow-lg transition-all duration-300 border-agriculture-green/30">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-agriculture-green" />
+                  Current vs Predicted Yield (tons/ha)
+                </CardTitle>
+                <CardDescription>
+                  Visual comparison across selected crops
+                </CardDescription>
+              </CardHeader>
+              <CardContent style={{ height: 320 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={yieldSeries} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                    <XAxis dataKey="crop" stroke="hsl(var(--muted-foreground))" />
+                    <YAxis stroke="hsl(var(--muted-foreground))" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="current" name="Current" fill="hsl(var(--agriculture-brown))" radius={[6, 6, 0, 0]} />
+                    <Bar dataKey="predicted" name="Predicted" fill="hsl(var(--agriculture-green))" radius={[6, 6, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
             {/* Influencing Factors */}
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-agriculture-green/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5 text-agriculture-green" />
@@ -151,7 +198,7 @@ const YieldPrediction = () => {
               <CardContent>
                 <div className="space-y-4">
                   {factors.map((factor, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:border-agriculture-green/40 transition-colors">
                       <div>
                         <h4 className="font-medium text-foreground">{factor.factor}</h4>
                         <p className="text-sm text-muted-foreground">{factor.description}</p>
@@ -205,7 +252,7 @@ const YieldPrediction = () => {
             </Card>
 
             {/* Quick Stats */}
-            <Card className="mt-8">
+            <Card className="mt-8 hover:shadow-lg transition-all duration-300 border-agriculture-green/30">
               <CardHeader>
                 <CardTitle className="text-lg">Season Summary</CardTitle>
               </CardHeader>
