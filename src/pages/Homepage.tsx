@@ -147,6 +147,7 @@ const Homepage = () => {
       
 
       {/* Government Schemes Section */}
+      {/* Quick Access removed; accessible after login on Dashboard */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h3 className="text-3xl font-bold text-foreground mb-4">

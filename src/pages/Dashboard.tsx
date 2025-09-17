@@ -55,6 +55,8 @@ const Dashboard = () => {
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/')}>Home</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/climate-resilience')}>Climate</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/yield-prediction')}>Yield</Button>
+            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/mandi-bhaba')}>Mandi</Button>
+            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/krishi-calendar')}>Calendar</Button>
           </div>
         </div>
       </header>
@@ -141,11 +143,11 @@ const Dashboard = () => {
             <Camera className="h-5 w-5" />
             <span className="text-xs">Fasal Doctor</span>
           </button>
-          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Mandi Bhaba is coming soon") }>
+          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/mandi-bhaba')}>
             <IndianRupee className="h-5 w-5" />
             <span className="text-xs">Mandi Bhaba</span>
           </button>
-          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Calendar is coming soon") }>
+          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/krishi-calendar')}>
             <Calendar className="h-5 w-5" />
             <span className="text-xs">Calendar</span>
           </button>

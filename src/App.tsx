@@ -14,6 +14,8 @@ import Dashboard from "./pages/Dashboard";
 import ClimateResilience from "./pages/ClimateResilience";
 import YieldPrediction from "./pages/YieldPrediction";
 import NotFound from "./pages/NotFound";
+import MandiBhaba from "./pages/MandiBhaba";
+import KrishiCalendar from "./pages/KrishiCalendar";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/climate-resilience" element={<ClimateResilience />} />
           <Route path="/yield-prediction" element={<YieldPrediction />} />
+          <Route path="/mandi-bhaba" element={<MandiBhaba />} />
+          <Route path="/krishi-calendar" element={<KrishiCalendar />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
