@@ -21,6 +21,7 @@ import {
 import LanguageQuickToggle from "@/components/LanguageQuickToggle";
 import VoiceTranslator from "@/components/VoiceTranslator";
 import { toast } from "@/components/ui/sonner";
+import BottomTabNav from "@/components/BottomTabNav";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -133,26 +134,7 @@ const Dashboard = () => {
       </main>
 
       {/* D. Bottom Tab Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-card/80 backdrop-blur-md border-t border-border/60 z-40">
-        <div className="max-w-3xl mx-auto grid grid-cols-4 text-center">
-          <button className="py-3 flex flex-col items-center gap-1 text-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/dashboard')}>
-            <Home className="h-5 w-5" />
-            <span className="text-xs">Home</span>
-          </button>
-          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => toast("Fasal Doctor is coming soon") }>
-            <Camera className="h-5 w-5" />
-            <span className="text-xs">Fasal Doctor</span>
-          </button>
-          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/mandi-bhaba')}>
-            <IndianRupee className="h-5 w-5" />
-            <span className="text-xs">Mandi Bhaba</span>
-          </button>
-          <button className="py-3 flex flex-col items-center gap-1 text-muted-foreground hover:text-agriculture-green transition-colors" onClick={() => navigate('/krishi-calendar')}>
-            <Calendar className="h-5 w-5" />
-            <span className="text-xs">Calendar</span>
-          </button>
-        </div>
-      </nav>
+      <BottomTabNav />
 
       {/* E. Voice Assistant (Floating) */}
       <Button

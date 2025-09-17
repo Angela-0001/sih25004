@@ -15,11 +15,30 @@ const LanguageSwitcher = () => {
           <SelectValue placeholder="Language" />
         </div>
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="max-h-[60vh] overflow-auto">
         <SelectItem value="en">English</SelectItem>
-        <SelectItem value="hi">हिन्दी</SelectItem>
-        <SelectItem value="mr">मराठी</SelectItem>
-        <SelectItem value="or">ଓଡ଼ିଆ</SelectItem>
+        <SelectItem value="as">অসমীয়া (Assamese)</SelectItem>
+        <SelectItem value="bn">বাংলা (Bengali)</SelectItem>
+        <SelectItem value="brx">बड़ो (Bodo)</SelectItem>
+        <SelectItem value="doi">डोगरी (Dogri)</SelectItem>
+        <SelectItem value="gu">ગુજરાતી (Gujarati)</SelectItem>
+        <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
+        <SelectItem value="kn">ಕನ್ನಡ (Kannada)</SelectItem>
+        <SelectItem value="ks">کٲشُر (Kashmiri)</SelectItem>
+        <SelectItem value="kok">कोंकणी (Konkani)</SelectItem>
+        <SelectItem value="mai">मैथिली (Maithili)</SelectItem>
+        <SelectItem value="ml">മലയാളം (Malayalam)</SelectItem>
+        <SelectItem value="mni">ꯃꯤꯇꯩ ꯂꯣꯟ (Meitei)</SelectItem>
+        <SelectItem value="mr">मराठी (Marathi)</SelectItem>
+        <SelectItem value="ne">नेपाली (Nepali)</SelectItem>
+        <SelectItem value="or">ଓଡ଼ିଆ (Odia)</SelectItem>
+        <SelectItem value="pa">ਪੰਜਾਬੀ (Punjabi)</SelectItem>
+        <SelectItem value="sa">संस्कृतम् (Sanskrit)</SelectItem>
+        <SelectItem value="sat">ᱥᱟᱱᱛᱟᱲᱤ (Santali)</SelectItem>
+        <SelectItem value="sd">سنڌي (Sindhi)</SelectItem>
+        <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
+        <SelectItem value="te">తెలుగు (Telugu)</SelectItem>
+        <SelectItem value="ur">اردو (Urdu)</SelectItem>
       </SelectContent>
     </Select>
   );

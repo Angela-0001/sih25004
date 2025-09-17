@@ -16,6 +16,7 @@ import YieldPrediction from "./pages/YieldPrediction";
 import NotFound from "./pages/NotFound";
 import MandiBhaba from "./pages/MandiBhaba";
 import KrishiCalendar from "./pages/KrishiCalendar";
+import FasalDoctor from "./pages/FasalDoctor";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/yield-prediction" element={<YieldPrediction />} />
           <Route path="/mandi-bhaba" element={<MandiBhaba />} />
           <Route path="/krishi-calendar" element={<KrishiCalendar />} />
+          <Route path="/fasal-doctor" element={<FasalDoctor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

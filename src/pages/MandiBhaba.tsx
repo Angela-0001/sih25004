@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
+import BottomTabNav from "@/components/BottomTabNav";
 
 type CropKey = "rice" | "tomato" | "wheat" | "maize";
 
@@ -116,7 +117,7 @@ const MandiBhaba = () => {
   const lastUpdated = new Date().toLocaleTimeString();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pb-8 pt-24">
+    <div className="mx-auto max-w-6xl px-4 pb-24 pt-24">
       {/* Hero */}
       <div className="mb-6 rounded-2xl p-6 border border-[#e6d9c5] bg-gradient-to-r from-[#fcfaf7] via-[#f8f5f1] to-[#fcfaf7]">
         <div className="flex items-start justify-between gap-4">
@@ -241,6 +242,7 @@ const MandiBhaba = () => {
           );
         })}
       </div>
+      <BottomTabNav />
     </div>
   );
 };

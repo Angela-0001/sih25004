@@ -1,5 +1,6 @@
 import { CheckCircle2, Circle, Sprout, Flower2, Leaf, Scissors } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BottomTabNav from "@/components/BottomTabNav";
 
 type StageKey = "sowing" | "germination" | "growth" | "flowering" | "harvest";
 
@@ -95,7 +96,7 @@ const KrishiCalendar = () => {
   const order: StageKey[] = ["sowing", "germination", "growth", "flowering", "harvest"];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
+    <div className="mx-auto max-w-4xl px-4 pt-24 pb-24">
       <h1 className="text-2xl font-bold tracking-tight mb-6">Krishi Calendar</h1>
       <div className="relative">
         <div className="absolute left-4 top-0 bottom-0 w-1 bg-[#e6d9c5]" />
@@ -138,6 +139,7 @@ const KrishiCalendar = () => {
           ))}
         </div>
       </div>
+      <BottomTabNav />
     </div>
   );
 };
