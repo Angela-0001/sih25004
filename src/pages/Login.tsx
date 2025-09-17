@@ -20,6 +20,7 @@ const Login = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate login - in real app would validate credentials
+    try { localStorage.setItem('loggedIn', '1'); } catch {}
     navigate('/dashboard');
   };
 

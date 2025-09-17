@@ -120,6 +120,13 @@ const Homepage = () => {
           <div className="absolute -bottom-10 -right-10 w-56 h-56 rounded-full bg-agriculture-brown blur-3xl" />
         </div>
         <div className="max-w-4xl mx-auto">
+          <div className="mb-8 flex justify-center">
+            <img
+              src="/logo.jpeg"
+              alt="Site Logo"
+              className="h-64 w-auto rounded-xl shadow border bg-white/70 backdrop-blur"
+            />
+          </div>
           <h2 className="text-5xl font-extrabold tracking-tight text-foreground mb-6">
             Welcome to India's Agricultural Hub
           </h2>

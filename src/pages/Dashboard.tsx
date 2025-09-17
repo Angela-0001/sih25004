@@ -53,7 +53,6 @@ const Dashboard = () => {
               <Sun className="h-4 w-4 text-yellow-500" />
               <span className="text-sm font-medium">28°C</span>
             </div>
-            <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/')}>Home</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/climate-resilience')}>Climate</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/yield-prediction')}>Yield</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/mandi-bhaba')}>Mandi</Button>
