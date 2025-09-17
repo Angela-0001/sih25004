@@ -22,6 +22,7 @@ import LanguageQuickToggle from "@/components/LanguageQuickToggle";
 import VoiceTranslator from "@/components/VoiceTranslator";
 import { toast } from "@/components/ui/sonner";
 import BottomTabNav from "@/components/BottomTabNav";
+import UserMenu from "@/components/UserMenu";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const Dashboard = () => {
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/yield-prediction')}>Yield</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/mandi-bhaba')}>Mandi</Button>
             <Button variant="outline" className="hover:border-agriculture-green/60 hover:bg-agriculture-green/10" onClick={() => navigate('/krishi-calendar')}>Calendar</Button>
+            <UserMenu />
           </div>
         </div>
       </header>

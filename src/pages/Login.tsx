@@ -6,11 +6,15 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Wheat, ArrowLeft, User, Phone, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { toast } from "@/components/ui/sonner";
 
 const Login = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
   const [loginData, setLoginData] = useState({ phone: "", password: "" });
+  const [resetOpen, setResetOpen] = useState(false);
+  const [resetPhone, setResetPhone] = useState("");
   const [registerData, setRegisterData] = useState({
     name: "",
     phone: "",
@@ -33,6 +37,16 @@ const Login = () => {
     setActiveTab("login");
   };
 
+  const handleReset = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate sending OTP/reset link
+    setResetOpen(false);
+    setResetPhone("");
+    toast("Password reset instructions sent", {
+      description: "Check your phone/SMS for the reset code.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-agriculture-earth to-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -48,7 +62,7 @@ const Login = () => {
           </Button>
           <div className="flex items-center justify-center gap-2 mb-4">
             <Wheat className="h-8 w-8 text-agriculture-green" />
-            <h1 className="text-2xl font-bold text-foreground">Farm Forward</h1>
+            <h1 className="text-2xl font-bold text-foreground">Krishi Setu</h1>
           </div>
           <p className="text-muted-foreground">Access your agricultural dashboard</p>
         </div>
@@ -104,9 +118,40 @@ const Login = () => {
                   </Button>
                 </form>
                 <div className="text-center">
-                  <Button variant="link" className="text-agriculture-green">
-                    Forgot your password?
-                  </Button>
+                  <Dialog open={resetOpen} onOpenChange={setResetOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="link" className="text-agriculture-green">Forgot your password?</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Reset your password</DialogTitle>
+                        <DialogDescription>
+                          Enter your registered phone number to receive reset instructions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form onSubmit={handleReset} className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="reset-phone">Phone number</Label>
+                          <div className="relative">
+                            <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              id="reset-phone"
+                              type="tel"
+                              placeholder="e.g. +91 98765 43210"
+                              className="pl-10"
+                              value={resetPhone}
+                              onChange={(e) => setResetPhone(e.target.value)}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-2">
+                          <Button type="button" variant="outline" onClick={() => setResetOpen(false)}>Cancel</Button>
+                          <Button type="submit" className="bg-agriculture-green hover:bg-agriculture-green/90">Send reset</Button>
+                        </div>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>

@@ -97,7 +97,7 @@ const Homepage = () => {
               <span className="pointer-events-none absolute -inset-1 rounded-full bg-agriculture-green/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-agriculture-green to-agriculture-light-green bg-clip-text text-transparent">
-              Farm Forward Dashboard
+              Krishi Setu
             </h1>
           </div>
           <div className="flex items-center gap-3">
@@ -124,7 +124,7 @@ const Homepage = () => {
             <img
               src="/logo.jpeg"
               alt="Site Logo"
-              className="h-64 w-auto rounded-xl shadow border bg-white/70 backdrop-blur"
+              className="h-96 w-auto rounded-xl shadow border bg-white/70 backdrop-blur"
             />
           </div>
           <h2 className="text-5xl font-extrabold tracking-tight text-foreground mb-6">
@@ -227,7 +227,7 @@ const Homepage = () => {
         <div className="container mx-auto px-4 py-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Wheat className="h-6 w-6 text-agriculture-green" />
-            <span className="text-lg font-semibold text-foreground">Farm Forward Dashboard</span>
+            <span className="text-lg font-semibold text-foreground">Krishi Setu</span>
           </div>
           <p className="text-muted-foreground">
             Empowering Indian agriculture through technology and government support
