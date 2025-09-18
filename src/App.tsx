@@ -45,7 +45,7 @@ const App = () => (
       <I18nProvider>
         <BrowserRouter>
           <a href="/" className="fixed top-3 left-4 z-[60] inline-flex items-center gap-2">
-            <img src="/logo.jpeg" alt="Site Logo" className="h-10 w-auto rounded-md shadow-sm border bg-white/70 backdrop-blur" />
+            <img src="/logo.jpeg" alt="Site Logo" className="h-10 w-auto rounded-md shadow-sm" />
           </a>
           <HeaderControls />
           <Routes>

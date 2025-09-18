@@ -124,7 +124,7 @@ const Homepage = () => {
             <img
               src="/logo.jpeg"
               alt="Site Logo"
-              className="h-96 w-auto rounded-xl shadow border bg-white/70 backdrop-blur"
+              className="h-96 w-auto rounded-xl shadow"
             />
           </div>
           <h2 className="text-5xl font-extrabold tracking-tight text-foreground mb-6">
